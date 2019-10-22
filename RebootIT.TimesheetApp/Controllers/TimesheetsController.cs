@@ -26,6 +26,9 @@ namespace RebootIT.TimesheetApp.Controllers
                 .Include(t => t.Client)
                 .Include(t => t.Location)
                 .Include(t => t.Staff);
+
+            ViewData["StaffId"] = id;
+
             return View("Index", await timesheetDbContext.ToListAsync());
         }
 
@@ -49,6 +52,9 @@ namespace RebootIT.TimesheetApp.Controllers
                 .Include(t => t.Client)
                 .Include(t => t.Location)
                 .Include(t => t.Staff);
+
+            ViewData["StaffId"] = id;
+
             return View("Index", await timesheetDbContext.ToListAsync());
         }
 
@@ -85,7 +91,7 @@ namespace RebootIT.TimesheetApp.Controllers
         {
             ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "CompanyName");
             ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name");
-            ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Id", staffId);
+            ViewData["StaffId"] = new SelectList(_context.Staff, "", "Id", staffId);
             return View();
         }
 
